@@ -22,8 +22,21 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-// http://damianchodorek.com/2015/08/09/kurs-android-async-task-web-service-rest-11/
+
 public class WebServiceHandler extends AsyncTask<String, Void, String> {
+
+    private Activity activity;
+
+
+    // okienko dialogowe, które każe użytkownikowi czekać
+
+
+    // metoda wykonywana jest zaraz przed główną operacją (doInBackground())
+    // mamy w niej dostęp do elementów UI
+
+
+    // główna operacja, która wykona się w osobnym wątku
+    // nie ma w niej dostępu do elementów UI
 
     @Override
     protected String doInBackground(String... urls) {
@@ -32,20 +45,24 @@ public class WebServiceHandler extends AsyncTask<String, Void, String> {
             // zakładamy, że jest tylko jeden URL
             URL url = new URL(urls[0]);
             URLConnection connection = url.openConnection();
-            // pobranie danych do InputStream
 
+            // pobranie danych do InputStream
             InputStream in = new BufferedInputStream(
                     connection.getInputStream());
 
             // konwersja InputStream na String
             // wynik będzie przekazany do metody onPostExecute()
             return streamToString(in);
+
         } catch (Exception e) {
             // obsłuż wyjątek
             Log.d(MainActivity.class.getSimpleName(), e.toString());
             return null;
         }
+
     }
+
+    // konwersja z InputStream do String
     public static String streamToString(InputStream is) {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -53,17 +70,20 @@ public class WebServiceHandler extends AsyncTask<String, Void, String> {
         String line = null;
 
         try {
+
             while ((line = reader.readLine()) != null) {
                 stringBuilder.append(line);
             }
 
+            reader.close();
+
         } catch (IOException e) {
-            Log.d(MainActivity.class.getSimpleName(), e.toString());
+            // obsłuż wyjątek
+            Log.d(WebServiceHandler.class.getSimpleName(), e.toString());
         }
+
         return stringBuilder.toString();
     }
-
-
 
 
 }

@@ -50,10 +50,8 @@ public class MainActivity extends Activity {
 
     }
     public void connect(View view){
-        WebServiceHandler webServiceHandler = new WebServiceHandler();
-        webServiceHandler.execute("http://192.168.43.69:8080/rest/login/"+roomName.getText()+"?password="+roomPassowrd.getText());
-
-
+        RestLoginGET restLoginGET = new RestLoginGET(this);
+        restLoginGET.execute("http://192.168.43.69:8080/rest/login/"+roomName.getText()+"?password="+roomPassowrd.getText());
     }
 
     private class WebServiceHandler extends AsyncTask<String, Void, String> {
