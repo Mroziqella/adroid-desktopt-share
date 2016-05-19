@@ -17,6 +17,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
 }
 
 dependencies {
@@ -31,4 +33,9 @@ dependencies {
         exclude group: 'org.apache.httpcomponents'
     }
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+
+        compile 'com.loopj.android:android-async-http:1.4.9'
+
+
+
 }

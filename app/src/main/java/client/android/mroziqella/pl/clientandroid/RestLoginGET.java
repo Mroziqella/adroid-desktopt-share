@@ -37,7 +37,7 @@ public class RestLoginGET extends WebServiceHandler {
             if(result.equals("false")){
                 throw new Exception();
             }
-            Intent intent = new Intent(activity, DisplayImageActivity.class);
+            Intent intent = new Intent(activity, ZoomInZoomOut.class);
             activity.startActivity(intent);
 
         } catch (Exception e) {

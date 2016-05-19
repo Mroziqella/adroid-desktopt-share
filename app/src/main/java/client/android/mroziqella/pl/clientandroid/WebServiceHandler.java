@@ -50,6 +50,8 @@ public class WebServiceHandler extends AsyncTask<String, Void, String> {
             InputStream in = new BufferedInputStream(
                     connection.getInputStream());
 
+
+
             // konwersja InputStream na String
             // wynik będzie przekazany do metody onPostExecute()
             return streamToString(in);

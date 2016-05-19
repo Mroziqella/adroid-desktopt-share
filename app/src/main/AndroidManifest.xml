@@ -28,7 +28,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".DisplayImageActivity"
+            android:name=".ZoomInZoomOut"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
