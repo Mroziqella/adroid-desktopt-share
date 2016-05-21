@@ -47,8 +47,7 @@ public class WebServiceHandler extends AsyncTask<String, Void, String> {
             URLConnection connection = url.openConnection();
 
             // pobranie danych do InputStream
-            InputStream in = new BufferedInputStream(
-                    connection.getInputStream());
+            InputStream in = new BufferedInputStream(connection.getInputStream());
 
 
 

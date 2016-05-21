@@ -19,6 +19,13 @@ import java.net.URLConnection;
 
 
 public class WebServiceHandlerPOST extends AsyncTask<String, Void, String> {
+    private int x,y;
+
+    public WebServiceHandlerPOST(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
@@ -56,8 +63,8 @@ public class WebServiceHandlerPOST extends AsyncTask<String, Void, String> {
 
             // stworzenie obiektu do wysłania
             JSONObject data = new JSONObject();
-            data.put("x",5);
-            data.put("y",10);
+            data.put("x",x);
+            data.put("y",y);
 
             // wysłanie obiektu
             BufferedWriter writer = new BufferedWriter(

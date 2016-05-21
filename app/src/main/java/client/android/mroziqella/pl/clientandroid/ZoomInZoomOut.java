@@ -103,6 +103,8 @@ public class ZoomInZoomOut extends Activity
                                 // zoom out
                                 Log.d("Scale:====> "," "+scale);
                                 matrix.postScale(scale, scale, mid.x, mid.y);
+
+
                             }
                         }
                         move=MOVE;
@@ -110,7 +112,7 @@ public class ZoomInZoomOut extends Activity
 
                     case MotionEvent.ACTION_UP:if(!(mode==NONE)&&!(mode==ZOOM)&&!(move==MOVE)) {
                         Toast.makeText(getApplicationContext(), "klik " + event.getX() + ":" + event.getY(), Toast.LENGTH_SHORT).show();
-                        postData();
+                        //postData();
                         Log.d("Scale:====> "," "+scale);
                         Log.d("Coord2:====> ",view.getWidth()+" :::: "+view.getScrollX());
                     }
@@ -140,7 +142,7 @@ public class ZoomInZoomOut extends Activity
 
         @Override
         public void run() {
-            new RestImageGET(imageView).execute("http://127.0.0.1:8080/image/picture/"+MainActivity.getRoomName().getText());
+            new RestImageGET(imageView).execute("http://192.168.43.69:8080/image/picture/"+MainActivity.getRoomName().getText());
             handler.postDelayed(timedTask, 1000);
         }};
 
@@ -159,9 +161,9 @@ public class ZoomInZoomOut extends Activity
 
 
 
-    public void postData() {
-        new WebServiceHandlerPOST().execute("http://192.168.43.69:8080/rest/coord/Adam/");
-    }
+//    public void postData() {
+//        new WebServiceHandlerPOST().execute("http://192.168.43.69:8080/rest/coord/Adam/");
+//    }
     /*
      * --------------------------------------------------------------------------
      * Method: spacing Parameters: MotionEvent Returns: float Description:

@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
     }
     public void connect(View view){
         RestLoginGET restLoginGET = new RestLoginGET(this);
-        restLoginGET.execute("http://127.0.0.1:8080/rest/login/"+roomName.getText()+"?password="+roomPassowrd.getText());
+        restLoginGET.execute("http://192.168.43.69:8080/rest/login/"+roomName.getText()+"?password="+roomPassowrd.getText());
     }
 
     public static EditText getRoomName() {
