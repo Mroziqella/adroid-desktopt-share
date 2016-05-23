@@ -5,47 +5,59 @@
     android:layout_height="match_parent"
     tools:context="client.android.mroziqella.pl.clientandroid.DisplayImageActivity">
 
-    <FrameLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Połącz"
-            android:id="@+id/connect"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="54dp"
-            android:onClick="polacz"
-            android:layout_gravity="center_horizontal|bottom" />
+            android:text="Sterowanie"
+            android:id="@+id/sendClick" />
 
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/horizontalScrollView"
-            android:layout_gravity="left|top" >
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <ScrollView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/scrollView"
-                android:layout_gravity="left|center_vertical" >
+                android:text="Połącz"
+                android:id="@+id/connect"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="54dp"
+                android:onClick="polacz"
+                android:layout_gravity="center_horizontal|bottom" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/imageView"
-                    android:src="@android:drawable/ic_menu_mapmode"
-                    android:gravity="left|top"
-                    android:layout_gravity="left|top"
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/horizontalScrollView"
+                android:layout_gravity="left|top" >
+
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/scrollView"
+                    android:layout_gravity="left|center_vertical" >
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imageView"
+                        android:src="@android:drawable/ic_menu_mapmode"
+                        android:gravity="left|top"
+                        android:layout_gravity="left|top"
 
 
 
-                    />
-            </ScrollView>
-        </HorizontalScrollView>
+                        />
+                </ScrollView>
+            </HorizontalScrollView>
 
-    </FrameLayout>
+        </FrameLayout>
+    </LinearLayout>
 
 </RelativeLayout>

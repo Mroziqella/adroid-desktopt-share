@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +33,18 @@ import java.net.URLConnection;
 public class DisplayImageActivity extends Activity {
     private ImageView imageView;
     private Button button;
+    private Handler handler = new Handler();
+    private CheckBox sendClick;
+    private final Activity activity = this;
+    private Runnable timedTask = new Runnable() {
+        @Override
+        public void run() {
+            new RestImageGET(imageView, activity).execute("http://192.168.43.69:8080/image/picture/" + MainActivity.getRoomName().getText());
+            handler.postDelayed(timedTask, 200);
+
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,26 +52,23 @@ public class DisplayImageActivity extends Activity {
         setContentView(R.layout.activity_display_image);
         imageView = (ImageView) findViewById(R.id.imageView);
         button = (Button) findViewById(R.id.connect);
+        sendClick=(CheckBox) findViewById(R.id.sendClick);
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                new WebServiceHandlerPOST((int) event.getX(),(int)event.getY())
-                        .execute("http://192.168.43.69:8080/rest/coord/"+MainActivity.getRoomName().getText());
-                return false;
+
+                if(sendClick.isChecked()) {
+                    new WebServiceHandlerPOST((int) event.getX(), (int) event.getY())
+                            .execute("http://192.168.43.69:8080/rest/coord/" + MainActivity.getRoomName().getText());
+                }
+
+                return true;
             }
         });
 
 
     }
-    Handler handler = new Handler();
-    Runnable timedTask = new Runnable(){
 
-        @Override
-        public void run() {
-            new RestImageGET(imageView).execute("http://192.168.43.69:8080/image/picture/"+MainActivity.getRoomName().getText());
-            handler.postDelayed(timedTask, 1000);
-
-        }};
 
     public void polacz(View view) {
         handler.post(timedTask);
@@ -70,8 +80,8 @@ public class DisplayImageActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        timedTask=null;
-        Toast.makeText(getApplicationContext(),"coooo?",Toast.LENGTH_SHORT).show();
+        timedTask = null;
+
     }
 
 

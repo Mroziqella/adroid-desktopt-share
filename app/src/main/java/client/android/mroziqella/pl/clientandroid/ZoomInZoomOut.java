@@ -142,7 +142,7 @@ public class ZoomInZoomOut extends Activity
 
         @Override
         public void run() {
-            new RestImageGET(imageView).execute("http://192.168.43.69:8080/image/picture/"+MainActivity.getRoomName().getText());
+            new RestImageGET(imageView,null).execute("http://192.168.43.69:8080/image/picture/"+MainActivity.getRoomName().getText());
             handler.postDelayed(timedTask, 1000);
         }};
 

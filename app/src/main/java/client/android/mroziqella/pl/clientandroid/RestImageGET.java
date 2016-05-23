@@ -2,7 +2,9 @@ package client.android.mroziqella.pl.clientandroid;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Application;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.SystemClock;
@@ -18,16 +20,14 @@ import android.widget.Toast;
 public class RestImageGET extends WebServiceHandler {
     private Activity activity;
     private Bitmap decodedByte;
-    private ProgressDialog dialog;
     private ImageView imageView;
 
-    public RestImageGET(ImageView imageView) {
-
+    public RestImageGET(ImageView imageView,Activity activity) {
+        this.activity=activity;
         this.imageView = imageView;
     }
 
-    public RestImageGET() {
-    }
+
 
     @Override
     protected void onPreExecute() {
@@ -40,7 +40,7 @@ public class RestImageGET extends WebServiceHandler {
             byte[] decodedString = Base64.decode(result, Base64.DEFAULT);
             decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             imageView.setImageBitmap(decodedByte);
-            new RestImageSizeGET(imageView).execute("http://192.168.43.69:8080/rest/sizeImage/"+MainActivity.getRoomName().getText());
+            new RestImageSizeGET(imageView,activity).execute("http://192.168.43.69:8080/rest/sizeImage/"+MainActivity.getRoomName().getText());
         } catch (java.lang.IllegalArgumentException e) {
         }
 
